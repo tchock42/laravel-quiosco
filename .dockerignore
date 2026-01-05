@@ -1,3 +1,9 @@
-vendor
-node_modules
+/node_modules
+/public/build
+/storage/*.key
+/vendor
 .env
+.phpunit.result.cache
+docker-compose.yml
+.git
+.gitignore
