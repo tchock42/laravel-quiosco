@@ -11,9 +11,15 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 # Establece directorio de trabajo
 WORKDIR /var/www
 
+# copia los archivos de la aplicación
 COPY . .
 
-RUN composer install
+# --no-dev para el contenedor sea ligero
+RUN composer install --no-interaction --optimize-autoloader --no-dev
 
-# Da permisos adecuados
-RUN chown -R www-data:www-data /var/www
+# Da permisos adecuados para laravel
+RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache
+
+# Render asigna un puerto dinámico mediante la variable $PORT.
+# Usamos 'php artisan serve' para simplificar, ya que es una API.
+CMD php artisan serve --host=0.0.0.0 --port=$PORT 
