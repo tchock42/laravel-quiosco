@@ -19,7 +19,7 @@ return [
 
     'allowed_methods' => ['*'],     // todos
 
-    'allowed_origins' => ['*'],     // todos
+    'allowed_origins' => explode(',', env('ALLOWED_ORIGINS', 'http://localhost')),     // toma el valor de .env
 
     'allowed_origins_patterns' => [],
 
