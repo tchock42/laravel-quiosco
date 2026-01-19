@@ -22,4 +22,4 @@ RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache
 
 # Render asigna un puerto dinámico mediante la variable $PORT.
 # Usamos 'php artisan serve' para simplificar, ya que es una API.
-CMD php artisan serve --host=0.0.0.0 --port=$PORT server.php
+CMD php -S 0.0.0.0:$PORT -t public/
